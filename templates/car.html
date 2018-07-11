@@ -1,0 +1,43 @@
+<html>
+<head>
+<script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+<script src="https://unpkg.com/aframe-controller-cursor-component@0.2.7/dist/aframe-controller-cursor-component.min.js"></script>
+<script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.min.js"></script>
+
+</head>
+<body>
+<a-scene>
+        <a-assets>
+              <a-asset-item id="ev200-gltf" src="{{ url_for('static',filename='obj3D/ev200/ev200.gltf') }}"></a-asset-item>
+            <img id="groundTexture" crossorigin="anonymous" src="{{ url_for('static',filename='images/floor.jpg') }}">
+       <img id="skyTexture" crossorigin="anonymous" src="{{ url_for('static',filename='images/360.png') }}">
+        
+   </a-assets>
+      
+
+        <a-sky src="#skyTexture"></a-sky>
+        <a-light type="ambient" color="#E3E3E3"></a-light>
+          <a-light type="point" intensity="2" position="2 4 4"></a-light>
+       
+     <a-link href="{{ url_for('back_index') }}"  title="index" position="2 4 7"  image="#skyTexture">
+     </a-link>
+
+      <a-link href="{{ url_for('get_form2') }}"  title="car1" position="-2 3 7"  image="#skyTexture">
+     </a-link>
+     <a-plane src="#groundTexture" rotation="-90 0 0" width="30" height="30"></a-plane>
+
+        <a-entity gltf-model="#ev200-gltf" position="0 1 -7" scale="0.08 0.08 0.08" rotation="0 0 0"></a-entity>
+
+
+
+        <a-entity laser-controls="hand: left" controller-cursor raycaster="showLine: true; far: 100" line="color: orange; opacity: 1">
+</a-entity>
+    <a-entity laser-controls="hand: right" controller-cursor raycaster="showLine: true; far: 100" line="color: orange; opacity: 1">
+    </a-entity>
+
+      <a-camera  position="0 2 5">
+            <a-cursor></a-cursor>
+        </a-camera>
+    </a-scene>
+</body>
+</html>    
